@@ -16,6 +16,7 @@ fn main() {
     .add_item(quit);
 
     tauri::Builder::default()
+        .setup(|_app| Ok(_app.set_activation_policy(tauri::ActivationPolicy::Accessory)))
         .system_tray(SystemTray::new().with_menu(system_tray_menu))
         .on_system_tray_event(|_app, event| {
             match event {
